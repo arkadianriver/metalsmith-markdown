@@ -6,11 +6,12 @@ var Metalsmith = require('metalsmith');
 var markdown = require('..');
 
 describe('metalsmith-markdown', function() {
-  it('should convert markdown files', function(done) {
+  it('should convert markdown files (with header/footer options)', function(done) {
     Metalsmith('test/fixtures/basic')
       .use(
         markdown({
-          smartypants: true
+          header: '<html>\n  <body>\n',
+          footer: '\n  </body>\n</html>'
         })
       )
       .build(function(err) {
@@ -24,8 +25,7 @@ describe('metalsmith-markdown', function() {
     Metalsmith('test/fixtures/keys')
       .use(
         markdown({
-          keys: ['custom'],
-          smartypants: true
+          keys: ['custom']
         })
       )
       .build(function(err, files) {
